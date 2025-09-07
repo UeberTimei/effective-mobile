@@ -1,0 +1,13 @@
+<article class="movie-card">
+  <div class="movie-card__poster-wrapper">
+    <img
+      [src]="movie.poster"
+      [alt]="'Постер к фильму ' + movie.title"
+      class="movie-card__poster"
+    />
+  </div>
+  <div class="movie-card__info">
+    <h3 class="movie-card__title">{{ movie.title }}</h3>
+    <p class="movie-card__year">{{ movie.year }}</p>
+  </div>
+</article>
