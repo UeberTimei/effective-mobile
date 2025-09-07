@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, delay, Observable, throwError } from 'rxjs';
+import { Movie } from '../../shared/models/movie.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class Movie {
+export class MovieService {
   private readonly moviesUrl = 'assets/data/movies.json';
 
   constructor(private http: HttpClient) {}
