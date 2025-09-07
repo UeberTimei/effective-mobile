@@ -1,0 +1,32 @@
+<div
+  class="details-modal__backdrop"
+  (click)="onBackdropClick($event)"
+  animate.enter="'fade-in'"
+  animate.leave="'fade-out'"
+>
+  <div
+    class="details-modal__content"
+    animate.enter="'slide-in-up'"
+    animate.leave="'slide-out-up'"
+  >
+    <button class="details-modal__close-btn" (click)="onClose()">×</button>
+    <div class="details-modal__poster">
+      <img [src]="movie.poster" [alt]="'Постер к фильму ' + movie.title" />
+    </div>
+    <div class="details-modal__info">
+      <h2 class="details-modal__title">{{ movie.title }} ({{ movie.year }})</h2>
+      <div class="details-modal__rating">
+        <span>Рейтинг:</span>
+        <span class="details-modal__rating-value">{{ movie.rating }}</span>
+      </div>
+      <div class="details-modal__genres">
+        <span
+          *ngFor="let genre of movie.genres"
+          class="details-modal__genre-tag"
+          >{{ genre }}</span
+        >
+      </div>
+      <p class="details-modal__description">{{ movie.description }}</p>
+    </div>
+  </div>
+</div>
