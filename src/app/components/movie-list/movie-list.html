@@ -1,1 +1,41 @@
-<p>movie-list works!</p>
+<div class="catalog">
+  <header class="catalog__header">
+    <h1 class="catalog__title">Каталог фильмов</h1>
+    <div class="catalog__search-wrapper">
+      <input
+        type="text"
+        class="catalog__search-input"
+        placeholder="Поиск фильмов..."
+        [formControl]="searchControl"
+      />
+    </div>
+  </header>
+
+  <div *ngIf="isLoading" class="catalog__loader">Загрузка...</div>
+  <div *ngIf="error" class="catalog__error">{{ error }}</div>
+
+  <section *ngIf="!isLoading && !error" class="catalog__grid">
+    <app-movie-card
+      *ngFor="let movie of movies$ | async; let i = index; trackBy: trackById"
+      [movie]="movie"
+      (click)="onMovieSelect(movie)"
+      animate.enter="'card-enter'"
+      [style.--index]="i"
+    >
+    </app-movie-card>
+  </section>
+
+  <div
+    *ngIf="(movies$ | async)?.length === 0 && !isLoading && !error"
+    class="catalog__no-results"
+  >
+    Фильмы не найдены.
+  </div>
+</div>
+
+<app-movie-details
+  *ngIf="selectedMovie"
+  [movie]="selectedMovie"
+  (closeModal)="onCloseDetails()"
+>
+</app-movie-details>
